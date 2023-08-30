@@ -1,0 +1,45 @@
+<%- include("header.ejs") %>
+
+<form action="/translate" method="post">
+
+    <textarea name="userText" id="" cols="60" rows="10" placeholder="Enter text..." autocomplete="off"></textarea>
+
+    <div class="languageSelection">
+        Source language: 
+        <select name="sourceLanguage" id="" class="selectionVal">
+            <% if(locals.availLang) { %>
+                <option value="">Choose One</option>
+                <% for(let i=0; i<availLang.length; i++) { %>
+                    <option value="<%= availLang[i].code %>"> <%= availLang[i].name %> </option>
+                <% } %>
+            <% } else { %>
+                <li>Sorry no languages available</li>
+            <% } %>
+        </select>
+    
+        Target Language:
+        <select name="targetLanguage" id="" class="selectionVal">
+            <% if(locals.availLang) { %>
+                <option value="">Choose One</option>
+                <% for(let i=0; i<availLang.length; i++) { %>
+                    <option value="<%= availLang[i].code %>"> <%= availLang[i].name %> </option>
+                <% } %>
+            <% } else { %>
+                <li>Sorry no languages available</li>
+            <% } %>
+        </select>
+    </div>
+
+    <input type="submit" value="Translate" class="submitButton">
+
+</form>
+
+<div class="translatedText">
+    <% if(locals.text) { %>
+        <h2><%= text %></h2>
+    <% } else { %>
+        <h2>Welcome to Text Translator ❤</h2>
+    <% } %>
+</div>
+
+<%- include("footer.ejs") %>
