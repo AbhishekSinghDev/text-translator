@@ -1,14 +1,18 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
 const app = express();
 const port = 3000;
-const API_URL = "https://text-translator2.p.rapidapi.com";
-// For api key go to rapid api
+
+dotenv.config({ silent: process.env.NODE_ENV === 'production' });
+
+const API_URL = process.env.API_URL;
+const API_KEY = process.env.API_KEY;
 
 app.listen(port, () => {
-    console.log(`Server listening on port: ${port} or click the link: http://localhost:${port}`);
+    console.log(`Server listening on port: ${port}`);
 })
 
 // Middlewares
